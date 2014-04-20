@@ -33,7 +33,7 @@ if(isset($_POST["save"])){
 
 ?>
 
-<!-- A form that list all the requirements in the scholarship -->
+<!-- A form that list all the requirements in the scholarship. -->
 <form action="studentApp3.php" method="POST"><p>
 	<input type="submit" name="logout" value="Logout"/><br><br></p>
 	<p>Please select below all requirements that you meet. Be extra careful in perfoming this step as it can determine whether you win a scholarship or not.</p>
