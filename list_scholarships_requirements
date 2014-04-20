@@ -1,0 +1,30 @@
+function list_scholarships_requirements($scholarship, $award){
+	$this->stmt=$this->connection->prepare("
+		SELECT requirements.ShortName, requirements.Description 
+			FROM
+				requirements
+				JOIN scholarship_requirements 
+				ON scholarship_requirements.Requirement = requirements.ShortName
+		WHERE ScholarshipName =?
+			AND awardAmount =?
+			AND scholarship_requirements.Weight=0;
+		");
+	if(!$this->stmt){
+		die("list_scholarships_requirements stmt failed");
+	}
+	$this->stmt->bind_param("si",$scholarship, $award);
+	$this->stmt->execute();
+	$this->stmt->store_result();
+	$output = array();
+	$this->stmt->bind_result($ShortName, $Description);
+	For($i=0;$this->stmt->fetch();$i++){
+		$output[$i]["shortName"]=$ShortName;
+		$output[$i]["description"]=$Description;
+	}
+	if(count($output)!=0) {
+		return $output;
+	}
+	else {
+		return FALSE;
+	}
+}
